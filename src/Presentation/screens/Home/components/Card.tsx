@@ -6,7 +6,6 @@ type CardProps = {
   character: CharacterBaseInfoModel;
 };
 function Card({character}: CardProps) {
-  console.log(character);
   return (
     <View style={{padding: 10}}>
       <Text>{character.name}</Text>
