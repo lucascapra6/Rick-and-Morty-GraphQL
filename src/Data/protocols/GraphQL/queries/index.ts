@@ -13,9 +13,6 @@ export const CHARACTERS = gql`
         status
         gender
         species
-        location {
-          name
-        }
       }
     }
   }
