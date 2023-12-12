@@ -1,5 +1,5 @@
 import {CharacterDetailsModel} from '../models/characterDetailsModel';
 
-export interface LoadCharactereByName {
+export interface LoadCharacterDetails {
   loadByName: () => Promise<CharacterDetailsModel>;
 }
