@@ -1,6 +1,8 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import {Sizes} from '../../../assets/sizes/sizes';
+import {CentralizedContainer} from '../../../components/CentralizedContainer.styled';
+import {TextStyled} from '../../../components/Text.styled';
 import {Weights} from '../../../assets/weights/weights';
 
 type EmptyListProps = {
@@ -9,11 +11,11 @@ type EmptyListProps = {
 };
 export function EmptyList({title, message}: EmptyListProps) {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text style={{fontSize: Sizes.large, fontWeight: Weights.bold}}>
+    <CentralizedContainer>
+      <TextStyled size={Sizes.large} weight={Weights.bold}>
         {title}
-      </Text>
-      <Text>{message}</Text>
-    </View>
+      </TextStyled>
+      <TextStyled>{message}</TextStyled>
+    </CentralizedContainer>
   );
 }

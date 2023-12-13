@@ -1,20 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {
-  ActivityIndicator,
-  Animated,
-  FlatList,
-  Image,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, Text} from 'react-native';
 import {useApolloClient} from '@apollo/client';
 import {GraphQLClient} from '../../../Data/protocols/GraphQL/graphQLClient';
 import {RemoteLoadAllCharacteres} from '../../../Data/usecases/remoteLoadAllCharacteres';
 import {CharacterBaseInfoModel} from '../../../Domain/models/characterBaseInfoModel';
 import Card from './components/Card';
-import Loading from '../../components/Loading';
 import {EmptyList} from './components/EmptyList';
+import {LoadingStyled} from '../../components/Loading.styled';
+import {Colors} from '../../assets/colors/colors';
+import {RowContainer} from '../../components/RowContainer.styled';
+import {TextStyled} from '../../components/Text.styled';
+import FlipCard from './components/FlipCard';
 
 export function Home() {
   const client = useApolloClient() as GraphQLClient;
@@ -52,25 +48,32 @@ export function Home() {
     loadCharacters();
   }, []);
 
-  if (loading) return <Loading size={'large'} />;
+  if (loading) return <LoadingStyled />;
 
   return (
-    <FlatList
-      data={characters}
-      renderItem={({item}) => <Card character={item} />}
-      showsVerticalScrollIndicator={false}
-      initialNumToRender={10}
-      onEndReachedThreshold={0.1}
-      keyExtractor={item => item.id.toString()}
-      onEndReached={() => {
-        handlePagination(page);
-      }}
-      ListFooterComponent={
-        hasListFinished ? <Text>Sem mais dados para exibir</Text> : <Loading />
-      }
-      ListEmptyComponent={
-        <EmptyList title={'Ops!'} message={'Nenhum personagem encontrado.'} />
-      }
-    />
+    <>
+      <FlatList
+        data={characters}
+        renderItem={({item}) => <Card character={item} />}
+        showsVerticalScrollIndicator={false}
+        initialNumToRender={10}
+        onEndReachedThreshold={0.1}
+        keyExtractor={item => item.id.toString()}
+        numColumns={2}
+        onEndReached={() => {
+          handlePagination(page);
+        }}
+        ListFooterComponent={
+          hasListFinished ? (
+            <Text>Sem mais dados para exibir</Text>
+          ) : (
+            <LoadingStyled color={Colors.secondary} />
+          )
+        }
+        ListEmptyComponent={
+          <EmptyList title={'Ops!'} message={'Nenhum personagem encontrado.'} />
+        }
+      />
+    </>
   );
 }
