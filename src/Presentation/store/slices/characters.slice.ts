@@ -5,8 +5,8 @@ import {CharacterDetailsModel} from '../../../Domain/models/characterDetailsMode
 type CharactersInitialState = {
   characters: CharacterBaseInfoModel[];
   characterDetails: CharacterDetailsModel;
-  isLoading: boolean;
-  isError: boolean;
+  loading: boolean;
+  error: boolean;
 };
 
 const initialState: CharactersInitialState = {
@@ -23,14 +23,24 @@ const initialState: CharactersInitialState = {
       name: '',
     },
   },
-  isLoading: false,
-  isError: false,
+  loading: false,
+  error: false,
 };
 
 const charactersSlice = createSlice({
   name: 'charactersSlice',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setCharacters: (state: CharactersInitialState, action) => {
+      state.characters = action.payload;
+    },
+    setLoading: (state: CharactersInitialState, action) => {
+      state.loading = action.payload;
+    },
+    setError: (state: CharactersInitialState, action) => {
+      state.error = action.payload;
+    },
+  },
 });
 
 export const charactersActions = charactersSlice.actions;

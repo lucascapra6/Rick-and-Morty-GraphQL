@@ -31,7 +31,6 @@ function Card({character}: CardProps) {
   const frontAnimatedStyle = {
     transform: [{rotateY: frontInterpolate}],
   };
-
   return (
     <CardContainer style={[frontAnimatedStyle]}>
       <TouchableOpacity>
