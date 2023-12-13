@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import Card from './Card';
-import {Animated, FlatList, Text} from 'react-native';
+import {Animated, FlatList} from 'react-native';
 import {LoadingStyled} from '../../../components/Loading.styled';
 import {Colors} from '../../../assets/colors/colors';
 import {EmptyList} from './EmptyList';
 import {CharacterBaseInfoModel} from '../../../../Domain/models/characterBaseInfoModel';
-import View = Animated.View;
-import {CentralizedContainer} from '../../../components/CentralizedContainer.styled';
+import {FlexCentralizedContainer} from '../../../components/FlexCentralizedContainer.styled';
 import {TextStyled} from '../../../components/Text.styled';
 
 type CharactersList = {
@@ -44,13 +43,7 @@ export function CharactersList({
         setOnEndReachedCalledDuringMomentum(false);
       }}
       ListFooterComponent={
-        hasListFinished || data.length < NUMBER_OF_ITEMS_PER_PAGE ? (
-          data.length > 0 ? (
-            <CentralizedContainer>
-              <TextStyled>No more data to load</TextStyled>
-            </CentralizedContainer>
-          ) : null
-        ) : (
+        hasListFinished || data.length < NUMBER_OF_ITEMS_PER_PAGE ? null : (
           <LoadingStyled color={Colors.secondary} />
         )
       }

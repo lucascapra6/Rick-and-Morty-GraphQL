@@ -9,7 +9,15 @@ type CardProps = {
 };
 const CardContainer = styled(Animated.View)`
   flex: 1;
+  align-self: center;
+  align-items: center;
   padding: 10px;
+  background-color: #9acd32;
+  border-radius: 10px;
+  shadow-color: #000;
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+  margin: 5px;
 `;
 
 function Card({character}: CardProps) {
@@ -34,7 +42,7 @@ function Card({character}: CardProps) {
   return (
     <CardContainer style={[frontAnimatedStyle]}>
       <TouchableOpacity>
-        <Text>{character.name}</Text>
+        <Text numberOfLines={1}>{character.name}</Text>
         <Text>{character.gender}</Text>
         <Text>{character.species}</Text>
         <Image

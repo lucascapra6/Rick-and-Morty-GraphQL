@@ -1,8 +1,7 @@
 import styled from 'styled-components/native';
 import {Colors} from '../assets/colors/colors';
 
-export const CentralizedContainer = styled.View`
-  justify-content: center;
-  align-items: center;
+export const ScreenStyled = styled.SafeAreaView`
+  flex: 1;
   background-color: ${Colors.background};
 `;

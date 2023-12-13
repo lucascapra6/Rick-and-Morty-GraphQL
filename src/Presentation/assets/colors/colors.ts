@@ -1,9 +1,8 @@
 export enum Colors {
-  primary = '#cb3b3a',
+  primary = '#9ACD32',
   secondary = '#e0c45b',
-  success = '#4caf51',
-  background = '#f0f0f0',
-  black = '#000000',
+  background = '#1F1F1F',
+  text = '#000000',
   white = '#ffffff',
   gray = '#aaaaaa',
   error = '#ff120f',

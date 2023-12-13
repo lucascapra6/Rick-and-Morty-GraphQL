@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {CentralizedContainer} from './CentralizedContainer.styled';
+import {FlexCentralizedContainer} from './FlexCentralizedContainer.styled';
 import {ActivityIndicatorProps} from 'react-native';
 import {Colors} from '../assets/colors/colors';
 
@@ -13,8 +13,8 @@ export function LoadingStyled({
   color = Colors.primary,
 }: LoadingProps) {
   return (
-    <CentralizedContainer>
+    <FlexCentralizedContainer>
       <ActivityIndicatorStyled size={size} color={color} />
-    </CentralizedContainer>
+    </FlexCentralizedContainer>
   );
 }

@@ -9,7 +9,7 @@ type TextProps = {
   weight?: Weights;
 };
 export const TextStyled = styled.Text<TextProps>`
-  color: ${props => props.color || Colors.black};
+  color: ${props => props.color || Colors.text};
   font-size: ${props => props.size || Sizes.small};
   font-weight: ${props => props.weight || Weights.bold};
 `;

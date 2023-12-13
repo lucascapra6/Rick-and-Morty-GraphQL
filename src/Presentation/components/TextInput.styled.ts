@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {Colors} from '../assets/colors/colors';
 
 export const TextInputStyled = styled.TextInput`
-  color: ${Colors.black};
+  color: ${Colors.text};
   width: 90%;
   height: 40px;
   background-color: ${Colors.white};
