@@ -1,5 +1,5 @@
 export enum Sizes {
-  small = 14,
-  medium = 20,
-  large = 26,
+  small = '16px',
+  medium = '20px',
+  large = '26px',
 }
