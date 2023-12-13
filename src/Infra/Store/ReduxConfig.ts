@@ -1,10 +1,10 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import rootReducer from '../../Presentation/store/index';
+import charactersReducer from '../../Presentation/store/index';
 
-const reducers = combineReducers({});
-
+const reducers = combineReducers(rootReducer);
 export const store = configureStore({
-  reducer: reducers,
-  // enhancers: reactotronEnhancer !== null ? [reactotronEnhancer] : undefined,
+  reducer: rootReducer,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
