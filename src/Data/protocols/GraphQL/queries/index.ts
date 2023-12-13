@@ -5,6 +5,7 @@ export const CHARACTERS = gql`
     characters(page: $page) {
       info {
         count
+        next
       }
       results {
         id
