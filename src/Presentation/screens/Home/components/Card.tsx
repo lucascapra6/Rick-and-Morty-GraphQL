@@ -1,5 +1,5 @@
 import {CharacterBaseInfoModel} from '../../../../Domain/models/characterBaseInfoModel';
-import {Animated, Image, Text, TouchableOpacity, View} from 'react-native';
+import {Animated, Image, Text, TouchableOpacity} from 'react-native';
 import React, {memo, useEffect, useRef} from 'react';
 import styled from 'styled-components/native';
 import {Easing} from 'react-native-reanimated';

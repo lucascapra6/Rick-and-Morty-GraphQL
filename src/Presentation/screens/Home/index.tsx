@@ -4,13 +4,8 @@ import {useApolloClient} from '@apollo/client';
 import {GraphQLClient} from '../../../Data/protocols/GraphQL/graphQLClient';
 import {RemoteLoadAllCharacteres} from '../../../Data/usecases/remoteLoadAllCharacteres';
 import {CharacterBaseInfoModel} from '../../../Domain/models/characterBaseInfoModel';
-import Card from './components/Card';
-import {EmptyList} from './components/EmptyList';
-import {LoadingStyled} from '../../components/Loading.styled';
-import {Colors} from '../../assets/colors/colors';
-import {RowContainer} from '../../components/RowContainer.styled';
-import {TextStyled} from '../../components/Text.styled';
-import FlipCard from './components/FlipCard';
+import {LoadingStyled} from '../../components/Loading.styled'
+import {PaginatedList} from './components/PaginatedList';
 
 export function Home() {
   const client = useApolloClient() as GraphQLClient;
@@ -52,27 +47,10 @@ export function Home() {
 
   return (
     <>
-      <FlatList
+      <PaginatedList
         data={characters}
-        renderItem={({item}) => <Card character={item} />}
-        showsVerticalScrollIndicator={false}
-        initialNumToRender={10}
-        onEndReachedThreshold={0.1}
-        keyExtractor={item => item.id.toString()}
-        numColumns={2}
-        onEndReached={() => {
-          handlePagination(page);
-        }}
-        ListFooterComponent={
-          hasListFinished ? (
-            <Text>Sem mais dados para exibir</Text>
-          ) : (
-            <LoadingStyled color={Colors.secondary} />
-          )
-        }
-        ListEmptyComponent={
-          <EmptyList title={'Ops!'} message={'Nenhum personagem encontrado.'} />
-        }
+        handlePagination={() => handlePagination(page)}
+        hasListFinished={hasListFinished}
       />
     </>
   );
