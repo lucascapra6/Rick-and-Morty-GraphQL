@@ -6,17 +6,17 @@ import {Colors} from '../../../assets/colors/colors';
 import {EmptyList} from './EmptyList';
 import {CharacterBaseInfoModel} from '../../../../Domain/models/characterBaseInfoModel';
 
-type PaginatedList = {
+type CharactersList = {
   data: CharacterBaseInfoModel[];
   handlePagination: (page: {distanceFromEnd: number}) => void;
   hasListFinished: boolean;
 };
 
-export function PaginatedList({
+export function CharactersList({
   data,
   handlePagination,
   hasListFinished,
-}: PaginatedList) {
+}: CharactersList) {
   return (
     <FlatList
       data={data}
