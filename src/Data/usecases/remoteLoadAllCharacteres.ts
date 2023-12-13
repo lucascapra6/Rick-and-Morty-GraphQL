@@ -12,10 +12,11 @@ export class RemoteLoadAllCharacteres implements LoadAllCharacteres {
   ) {}
   async loadAll(
     page: number,
+    name: string,
   ): Promise<GraphqlResponse<RemoteLoadAllCharactersModel>> {
     const {data, loading, errors} = await this.graphqlClient.query({
       query: CHARACTERS,
-      variables: {page: page},
+      variables: {page: page, name: name},
     });
     return {data, loading, errors};
   }

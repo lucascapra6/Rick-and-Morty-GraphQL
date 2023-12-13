@@ -11,7 +11,7 @@ type EmptyListProps = {
 };
 export function EmptyList({title, message}: EmptyListProps) {
   return (
-    <CentralizedContainer>
+    <CentralizedContainer style={{height: 200}}>
       <TextStyled size={Sizes.large} weight={Weights.bold}>
         {title}
       </TextStyled>

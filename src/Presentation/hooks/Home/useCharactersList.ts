@@ -16,28 +16,51 @@ export function useCharactersList() {
   const {characters, loading, error} = useSelector(
     (state: CharactersRootState) => state.charactersReducer,
   );
+  const [characterNameToSearch, setCharacterNameToSearch] =
+    useState<string>('');
+
   const dispatch = useDispatch();
 
+  const FIRST_PAGE = 1;
+
   useEffect(() => {
-    loadCharacters();
-  }, []);
-  async function loadCharacters() {
+    if (!characterNameToSearch) {
+      loadCharacters(FIRST_PAGE, characterNameToSearch);
+      setPage(FIRST_PAGE);
+      return;
+    }
+    if (characterNameToSearch) {
+      setPage(FIRST_PAGE);
+      setHasListFinished(false);
+      const timer = setTimeout(() => {
+        loadCharacters(
+          page > FIRST_PAGE ? FIRST_PAGE : page,
+          characterNameToSearch,
+        );
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+    loadCharacters(page, characterNameToSearch);
+    setHasListFinished(false);
+  }, [characterNameToSearch]);
+
+  async function loadCharacters(page: number, name: string) {
     try {
       dispatch(charactersActions.setError(false));
       dispatch(charactersActions.setLoading(true));
-      const {data} = await remoteLoadAllCharacteres.loadAll(page);
+      const {data} = await remoteLoadAllCharacteres.loadAll(page, name);
       dispatch(charactersActions.setCharacters(data.characters.results));
     } catch (e) {
-      console.log(e);
       dispatch(charactersActions.setError(true));
     } finally {
       dispatch(charactersActions.setLoading(false));
     }
   }
-  async function loadMoreCharacters(page: number) {
+  async function loadMoreCharacters(page: number, name: string) {
     try {
       dispatch(charactersActions.setError(false));
-      const {data} = await remoteLoadAllCharacteres.loadAll(page);
+      const {data} = await remoteLoadAllCharacteres.loadAll(page, name);
       dispatch(
         charactersActions.setCharacters([
           ...characters,
@@ -53,12 +76,22 @@ export function useCharactersList() {
       dispatch(charactersActions.setLoading(false));
     }
   }
-  async function handlePagination(pageValue: number) {
+
+  async function handlePagination() {
     if (!hasListFinished) {
-      await loadMoreCharacters(pageValue + 1);
-      setPage(pageValue + 1);
+      await loadMoreCharacters(page + 1, characterNameToSearch);
+      setPage(page + 1);
     }
   }
 
-  return {characters, loading, error, handlePagination, hasListFinished, page};
+  return {
+    characters,
+    loading,
+    error,
+    handlePagination,
+    hasListFinished,
+    page,
+    characterNameToSearch,
+    setCharacterNameToSearch,
+  };
 }

@@ -1,9 +1,5 @@
-import {RemoteLoadAllCharactersModel} from '../../Data/model/remoteLoadAllCharactersModel';
+import {GraphqlResponse} from '../../Data/protocols/GraphQL/graphQLClient';
 
 export interface LoadAllCharacteres {
-  loadAll: (page: number) => Promise<{
-    data: RemoteLoadAllCharactersModel;
-    loading: boolean;
-    errors: any;
-  }>;
+  loadAll: (page: number, name: string) => Promise<GraphqlResponse<any>>;
 }
