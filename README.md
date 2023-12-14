@@ -21,6 +21,8 @@ Presentation: Layer onde armazena-se toda a camada que interage com o usuário.
 Próximos passos:
 - Cobrir o app com mais testes unitários e integração, uma vez que, devido ao tempo, só foi possível até o momento incluir alguns testes unitários de componentes;
 - Identificar e Refatorar pontos que podem ser melhorados;
+- Implementar Acessibilidade
+- Implementar LazyLoading/Carregamento progressivo de imagens
 
 Instruções de execução
 Ios:
