@@ -23,38 +23,16 @@ export function CharactersList({
   handlePagination,
   hasListFinished,
 }: CharactersList) {
-  const navigation = useNavigation();
   const [
     onEndReachedCalledDuringMomentum,
     setOnEndReachedCalledDuringMomentum,
   ] = useState(false);
   const NUMBER_OF_ITEMS_PER_PAGE = 20;
 
-  const dispatch = useDispatch();
-  const client = useApolloClient() as GraphQLClient;
-  const loadCharacterDetails = new RemoteLoadCharacterDetails(client);
-
-  const onCardPress = useCallback(async (id: string) => {
-    try {
-      dispatch(charactersActions.setError(false));
-      dispatch(charactersActions.setLoading(true));
-      const {data} = await loadCharacterDetails.loadDetails(id);
-      dispatch(charactersActions.setCharacterDetails(data));
-      navigation.navigate('Details');
-    } catch (e) {
-      console.log(e);
-      dispatch(charactersActions.setError(true));
-    } finally {
-      dispatch(charactersActions.setLoading(false));
-    }
-  }, []);
-
   return (
     <FlatList
       data={data}
-      renderItem={({item}) => (
-        <Card character={item} onPress={() => onCardPress(item.id)} />
-      )}
+      renderItem={({item}) => <Card character={item} />}
       showsVerticalScrollIndicator={false}
       onEndReachedThreshold={0.5}
       keyExtractor={item => item.id.toString()}
