@@ -12,6 +12,6 @@ describe('CentralizedContainer component', () => {
     expect(containerElement.props.style.backgroundColor).toBe(
       Colors.background,
     );
-    console.log(containerElement.props.style);
+    expect(containerElement.props.style).not.toHaveProperty('flex');
   });
 });
