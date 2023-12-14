@@ -27,6 +27,7 @@ export function useCharactersList() {
     if (!characterNameToSearch) {
       loadCharacters(FIRST_PAGE, characterNameToSearch);
       setPage(FIRST_PAGE);
+      setHasListFinished(false);
       return;
     }
     if (characterNameToSearch) {

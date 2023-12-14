@@ -5,12 +5,6 @@ import {LoadingStyled} from '../../../components/Loading.styled';
 import {Colors} from '../../../assets/colors/colors';
 import {EmptyList} from './EmptyList';
 import {CharacterBaseInfoModel} from '../../../../Domain/models/characterBaseInfoModel';
-import {useNavigation} from '../../../hooks/useNavigation';
-import {RemoteLoadCharacterDetails} from '../../../../Data/usecases/remoteLoadCharacterDetails';
-import {useApolloClient} from '@apollo/client';
-import {GraphQLClient} from '../../../../Data/protocols/GraphQL/graphQLClient';
-import {useDispatch} from 'react-redux';
-import {charactersActions} from '../../../store/slices/characters.slice';
 
 type CharactersList = {
   data: CharacterBaseInfoModel[];
@@ -34,11 +28,12 @@ export function CharactersList({
       data={data}
       renderItem={({item}) => <Card character={item} />}
       showsVerticalScrollIndicator={false}
-      onEndReachedThreshold={0.5}
+      onEndReachedThreshold={0.6}
       keyExtractor={item => item.id.toString()}
       numColumns={2}
       onEndReached={({distanceFromEnd}) => {
         if (!onEndReachedCalledDuringMomentum && distanceFromEnd > 0) {
+          console.log(distanceFromEnd);
           handlePagination();
           setOnEndReachedCalledDuringMomentum(true);
         }
