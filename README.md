@@ -22,4 +22,16 @@ Próximos passos:
 - Cobrir o app com mais testes unitários e integração, uma vez que, devido ao tempo, só foi possível até o momento incluir alguns testes unitários de componentes;
 - Identificar e Refatorar pontos que podem ser melhorados;
 
+Instruções de execução:
+Ios:
+- npm install
+- cd ios & pod install
+- npm start
+- npm run ios
+
+Android:
+- npm install
+- npm start
+- npm run android
+
 https://github.com/lucascapra6/Rick-and-Morty-GraphQL/assets/85529911/4166519e-37ae-4315-a429-0ea3769b5821
