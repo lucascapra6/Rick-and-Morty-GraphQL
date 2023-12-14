@@ -32,7 +32,7 @@ export function Details() {
           <DetailsLabelDisplay label={'Gender'} value={gender || '-'} />
           <DetailsLabelDisplay label={'Species'} value={species} />
           <DetailsLabelDisplay label={'Status'} value={status} />
-          <DetailsLabelDisplay label={'Location'} value={name} />
+          <DetailsLabelDisplay label={'Location'} value={location.name} />
         </ScrollBoxStyled>
       </FlexCentralizedContainer>
     </ScreenStyled>
