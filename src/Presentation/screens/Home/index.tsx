@@ -9,9 +9,6 @@ import {
 import {useCharactersList} from '../../hooks/Home/useCharactersList';
 import {TextInputStyled} from '../../components/TextInput.styled';
 import {ScreenStyled} from '../../components/Screen.styled';
-import {TextStyled} from '../../components/Text.styled';
-import {Sizes} from '../../assets/sizes/sizes';
-import {Colors} from '../../assets/colors/colors';
 import Title from './components/Title';
 
 export function Home() {

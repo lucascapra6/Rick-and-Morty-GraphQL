@@ -10,7 +10,7 @@ type TitleProps = {
 export default function Title({children}: TitleProps) {
   return (
     <CentralizedContainer>
-      <TextStyled size={Sizes.extraLarge} color={Colors.secondary}>
+      <TextStyled size={Sizes.extraLarge} color={Colors.primary}>
         {children}
       </TextStyled>
     </CentralizedContainer>

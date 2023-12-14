@@ -1,17 +1,21 @@
 import {CharacterBaseInfoModel} from '../../../../Domain/models/characterBaseInfoModel';
-import {Animated, Image, Text, TouchableOpacity} from 'react-native';
+import {Animated, Image, TouchableOpacity} from 'react-native';
 import React, {memo, useEffect, useRef} from 'react';
 import styled from 'styled-components/native';
 import {Easing} from 'react-native-reanimated';
+import {TextStyled} from '../../../components/Text.styled';
+import {Sizes} from '../../../assets/sizes/sizes';
+import {RowContainer} from '../../../components/RowContainer.styled';
+import {Weights} from '../../../assets/weights/weights';
+import {ImageStyled} from '../../../components/Image.styled';
 
 type CardProps = {
   character: CharacterBaseInfoModel;
 };
 const CardContainer = styled(Animated.View)`
-  flex: 1;
+  padding: 10px;
   align-self: center;
   align-items: center;
-  padding: 10px;
   background-color: #9acd32;
   border-radius: 10px;
   shadow-color: #000;
@@ -41,15 +45,34 @@ function Card({character}: CardProps) {
   };
   return (
     <CardContainer style={[frontAnimatedStyle]}>
-      <TouchableOpacity>
-        <Text numberOfLines={1}>{character.name}</Text>
-        <Text>{character.gender}</Text>
-        <Text>{character.species}</Text>
-        <Image
-          style={{height: 150, width: 150}}
+      <TouchableOpacity
+        style={{justifyContent: 'center', alignItems: 'center'}}>
+        <ImageStyled
           source={{uri: character.image}}
+          width={150}
+          height={150}
           blurRadius={1}
         />
+        <TextStyled
+          numberOfLines={1}
+          size={Sizes.small}
+          style={{maxWidth: 150}}>
+          {character.name}
+        </TextStyled>
+        <TextStyled
+          size={Sizes.extraSmall}
+          weight={Weights.normal}
+          style={{maxWidth: 150}}>
+          {character.gender}
+        </TextStyled>
+        <TextStyled
+          numberOfLines={1}
+          ellipsizeMode={'tail'}
+          size={Sizes.extraSmall}
+          weight={Weights.normal}
+          style={{maxWidth: 150}}>
+          {character.species}
+        </TextStyled>
       </TouchableOpacity>
     </CardContainer>
   );
