@@ -1,5 +1,8 @@
-import {GraphqlResponse} from '../../Data/protocols/GraphQL/graphQLClient';
+import {CharacterBaseInfoModel} from '../models/characterBaseInfoModel';
 
-export interface LoadAllCharacteres {
-  loadAll: (page: number, name: string) => Promise<GraphqlResponse<any>>;
+export interface LoadCharacters {
+  loadAll: (
+    page: number,
+    name: string,
+  ) => Promise<{data: CharacterBaseInfoModel}>;
 }

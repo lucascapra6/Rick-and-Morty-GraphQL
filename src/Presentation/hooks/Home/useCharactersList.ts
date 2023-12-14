@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useApolloClient} from '@apollo/client';
 import {GraphQLClient} from '../../../Data/protocols/GraphQL/graphQLClient';
 import {RemoteLoadAllCharacteres} from '../../../Data/usecases/remoteLoadAllCharacteres';

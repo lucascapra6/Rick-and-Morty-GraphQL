@@ -1,5 +1,10 @@
 import {CharacterBaseInfoModel} from '../../../../Domain/models/characterBaseInfoModel';
-import {Animated, Image, TouchableOpacity} from 'react-native';
+import {
+  Animated,
+  Image,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 import React, {memo, useEffect, useRef} from 'react';
 import styled from 'styled-components/native';
 import {Easing} from 'react-native-reanimated';
@@ -9,7 +14,7 @@ import {RowContainer} from '../../../components/RowContainer.styled';
 import {Weights} from '../../../assets/weights/weights';
 import {ImageStyled} from '../../../components/Image.styled';
 
-type CardProps = {
+type CardProps = TouchableOpacityProps & {
   character: CharacterBaseInfoModel;
 };
 const CardContainer = styled(Animated.View)`
@@ -24,7 +29,7 @@ const CardContainer = styled(Animated.View)`
   margin: 5px;
 `;
 
-function Card({character}: CardProps) {
+function Card({character, onPress}: CardProps) {
   const flipAnimation = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.timing(flipAnimation, {
@@ -46,7 +51,8 @@ function Card({character}: CardProps) {
   return (
     <CardContainer style={[frontAnimatedStyle]}>
       <TouchableOpacity
-        style={{justifyContent: 'center', alignItems: 'center'}}>
+        style={{justifyContent: 'center', alignItems: 'center'}}
+        onPress={onPress}>
         <ImageStyled
           source={{uri: character.image}}
           width={150}

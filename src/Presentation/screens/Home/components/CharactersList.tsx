@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Card from './Card';
-import {Animated, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import {LoadingStyled} from '../../../components/Loading.styled';
 import {Colors} from '../../../assets/colors/colors';
 import {EmptyList} from './EmptyList';
 import {CharacterBaseInfoModel} from '../../../../Domain/models/characterBaseInfoModel';
-import {FlexCentralizedContainer} from '../../../components/FlexCentralizedContainer.styled';
-import {TextStyled} from '../../../components/Text.styled';
+import {useNavigation} from '../../../hooks/useNavigation';
+import {RemoteLoadCharacterDetails} from '../../../../Data/usecases/remoteLoadCharacterDetails';
+import {useApolloClient} from '@apollo/client';
+import {GraphQLClient} from '../../../../Data/protocols/GraphQL/graphQLClient';
+import {useDispatch} from 'react-redux';
+import {charactersActions} from '../../../store/slices/characters.slice';
 
 type CharactersList = {
   data: CharacterBaseInfoModel[];
@@ -19,16 +23,38 @@ export function CharactersList({
   handlePagination,
   hasListFinished,
 }: CharactersList) {
+  const navigation = useNavigation();
   const [
     onEndReachedCalledDuringMomentum,
     setOnEndReachedCalledDuringMomentum,
   ] = useState(false);
-
   const NUMBER_OF_ITEMS_PER_PAGE = 20;
+
+  const dispatch = useDispatch();
+  const client = useApolloClient() as GraphQLClient;
+  const loadCharacterDetails = new RemoteLoadCharacterDetails(client);
+
+  const onCardPress = useCallback(async (id: string) => {
+    try {
+      dispatch(charactersActions.setError(false));
+      dispatch(charactersActions.setLoading(true));
+      const {data} = await loadCharacterDetails.loadDetails(id);
+      dispatch(charactersActions.setCharacterDetails(data));
+      navigation.navigate('Details');
+    } catch (e) {
+      console.log(e);
+      dispatch(charactersActions.setError(true));
+    } finally {
+      dispatch(charactersActions.setLoading(false));
+    }
+  }, []);
+
   return (
     <FlatList
       data={data}
-      renderItem={({item}) => <Card character={item} />}
+      renderItem={({item}) => (
+        <Card character={item} onPress={() => onCardPress(item.id)} />
+      )}
       showsVerticalScrollIndicator={false}
       onEndReachedThreshold={0.5}
       keyExtractor={item => item.id.toString()}

@@ -12,15 +12,17 @@ type CharactersInitialState = {
 const initialState: CharactersInitialState = {
   characters: [],
   characterDetails: {
-    id: '',
-    name: '',
-    species: '',
-    image: '',
-    gender: '',
-    type: '',
-    status: '',
-    location: {
+    character: {
+      id: '',
       name: '',
+      species: '',
+      image: '',
+      gender: '',
+      type: '',
+      status: '',
+      location: {
+        name: '',
+      },
     },
   },
   loading: false,
@@ -33,6 +35,9 @@ const charactersSlice = createSlice({
   reducers: {
     setCharacters: (state: CharactersInitialState, action) => {
       state.characters = action.payload;
+    },
+    setCharacterDetails: (state: CharactersInitialState, action) => {
+      state.characterDetails = action.payload;
     },
     setLoading: (state: CharactersInitialState, action) => {
       state.loading = action.payload;

@@ -1,23 +1,21 @@
-import {LoadAllCharacteres} from '../../Domain/usecases/loadAllCharacteres';
+import {LoadCharacters} from '../../Domain/usecases/loadAllCharacteres';
 import {CHARACTERS} from '../protocols/GraphQL/queries';
-import {
-  GraphQLClient,
-  GraphqlResponse,
-} from '../protocols/GraphQL/graphQLClient';
+import {GraphQLClient} from '../protocols/GraphQL/graphQLClient';
 import {RemoteLoadAllCharactersModel} from '../model/remoteLoadAllCharactersModel';
+import {CharacterBaseInfoModel} from '../../Domain/models/characterBaseInfoModel';
 
-export class RemoteLoadAllCharacteres implements LoadAllCharacteres {
+export class RemoteLoadAllCharacteres implements LoadCharacters {
   constructor(
     private readonly graphqlClient: GraphQLClient<RemoteLoadAllCharactersModel>,
   ) {}
   async loadAll(
     page: number,
     name: string,
-  ): Promise<GraphqlResponse<RemoteLoadAllCharactersModel>> {
-    const {data, loading, errors} = await this.graphqlClient.query({
+  ): Promise<{data: CharacterBaseInfoModel}> {
+    const {data} = await this.graphqlClient.query({
       query: CHARACTERS,
       variables: {page: page, name: name},
     });
-    return {data, loading, errors};
+    return {data} as unknown as {data: CharacterBaseInfoModel};
   }
 }

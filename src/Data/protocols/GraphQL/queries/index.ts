@@ -26,6 +26,7 @@ export const CHARACTER_DETAILS = gql`
       image
       type
       species
+      gender
       status
       episode {
         id
@@ -41,4 +42,3 @@ export const CHARACTER_DETAILS = gql`
     }
   }
 `;
-

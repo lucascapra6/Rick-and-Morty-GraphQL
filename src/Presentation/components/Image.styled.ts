@@ -9,4 +9,6 @@ type ImageStyledProps = {
 export const ImageStyled = styled.Image<ImageStyledProps>`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
+  max-width: 95%;
+  max-height: 90%;
 `;
