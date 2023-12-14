@@ -22,7 +22,7 @@ Próximos passos:
 - Cobrir o app com mais testes unitários e integração, uma vez que, devido ao tempo, só foi possível até o momento incluir alguns testes unitários de componentes;
 - Identificar e Refatorar pontos que podem ser melhorados;
 
-Instruções de execução:
+Instruções de execução
 Ios:
 - npm install
 - cd ios & pod install
