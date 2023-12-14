@@ -18,6 +18,8 @@ import {GraphQLClient} from '../../../../Data/protocols/GraphQL/graphQLClient';
 import {RemoteLoadCharacterDetails} from '../../../../Data/usecases/remoteLoadCharacterDetails';
 import {charactersActions} from '../../../store/slices/characters.slice';
 import {useNavigation} from '../../../hooks/useNavigation';
+import {useDetails} from '../../../hooks/Details/useDetails';
+import {useMakeRemoteLoadCharacterDetails} from '../../../../Main/Factories/makeRemoteLoadCharacterDetail';
 
 type CardProps = {
   character: CharacterBaseInfoModel;
@@ -53,31 +55,14 @@ function Card({character}: CardProps) {
   const frontAnimatedStyle = {
     transform: [{rotateY: frontInterpolate}],
   };
-  const dispatch = useDispatch();
-  const client = useApolloClient() as GraphQLClient;
-  const loadCharacterDetails = new RemoteLoadCharacterDetails(client);
-  const navigation = useNavigation();
 
-  const onCardPress = useCallback(async () => {
-    try {
-      dispatch(charactersActions.setError(false));
-      dispatch(charactersActions.setLoading(true));
-      const {data} = await loadCharacterDetails.loadDetails(character.id);
-      dispatch(charactersActions.setCharacterDetails(data));
-      navigation.navigate('Details');
-    } catch (e) {
-      console.log(e);
-      dispatch(charactersActions.setError(true));
-    } finally {
-      dispatch(charactersActions.setLoading(false));
-    }
-  }, []);
+  const {onCardPress} = useDetails(useMakeRemoteLoadCharacterDetails());
 
   return (
     <CardContainer style={[frontAnimatedStyle]}>
       <TouchableOpacity
         style={{justifyContent: 'center', alignItems: 'center'}}
-        onPress={onCardPress}>
+        onPress={() => onCardPress(character.id)}>
         <ImageStyled
           source={{uri: character.image}}
           width={150}

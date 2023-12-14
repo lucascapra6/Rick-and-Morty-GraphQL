@@ -10,6 +10,7 @@ import {useCharactersList} from '../../hooks/Home/useCharactersList';
 import {TextInputStyled} from '../../components/TextInput.styled';
 import {ScreenStyled} from '../../components/Screen.styled';
 import Title from './components/Title';
+import {useMakeRemoteLoadCharacters} from '../../../Main/Factories/makeRemoteLoadCharacters';
 
 export function Home() {
   const {
@@ -20,7 +21,7 @@ export function Home() {
     hasListFinished,
     characterNameToSearch,
     setCharacterNameToSearch,
-  } = useCharactersList();
+  } = useCharactersList(useMakeRemoteLoadCharacters());
 
   if (loading) return <LoadingStyled size={'large'} />;
   if (error) return <Text>Erro</Text>;

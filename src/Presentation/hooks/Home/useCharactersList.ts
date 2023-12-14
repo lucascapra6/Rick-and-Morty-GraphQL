@@ -7,10 +7,9 @@ import {
   charactersActions,
   CharactersRootState,
 } from '../../store/slices/characters.slice';
+import {LoadCharacters} from '../../../Domain/usecases/loadAllCharacteres';
 
-export function useCharactersList() {
-  const client = useApolloClient() as GraphQLClient;
-  const remoteLoadAllCharacteres = new RemoteLoadAllCharacteres(client);
+export function useCharactersList(LoadCharacters: LoadCharacters) {
   const [hasListFinished, setHasListFinished] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const {characters, loading, error} = useSelector(
@@ -46,7 +45,7 @@ export function useCharactersList() {
     try {
       dispatch(charactersActions.setError(false));
       dispatch(charactersActions.setLoading(true));
-      const {data} = await remoteLoadAllCharacteres.loadAll(page, name);
+      const {data} = await LoadCharacters.loadAll(page, name);
       dispatch(charactersActions.setCharacters(data.characters.results));
     } catch (e) {
       dispatch(charactersActions.setError(true));
@@ -57,7 +56,7 @@ export function useCharactersList() {
   async function loadMoreCharacters(page: number, name: string) {
     try {
       dispatch(charactersActions.setError(false));
-      const {data} = await remoteLoadAllCharacteres.loadAll(page, name);
+      const {data} = await LoadCharacters.loadAll(page, name);
       dispatch(
         charactersActions.setCharacters([
           ...characters,
