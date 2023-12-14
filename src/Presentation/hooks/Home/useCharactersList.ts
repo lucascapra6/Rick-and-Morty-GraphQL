@@ -30,20 +30,16 @@ export function useCharactersList() {
       setHasListFinished(false);
       return;
     }
-    if (characterNameToSearch) {
-      setPage(FIRST_PAGE);
-      setHasListFinished(false);
-      const timer = setTimeout(() => {
-        loadCharacters(
-          page > FIRST_PAGE ? FIRST_PAGE : page,
-          characterNameToSearch,
-        );
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
-    loadCharacters(page, characterNameToSearch);
+    setPage(FIRST_PAGE);
     setHasListFinished(false);
+    const timer = setTimeout(() => {
+      loadCharacters(
+        page > FIRST_PAGE ? FIRST_PAGE : page,
+        characterNameToSearch,
+      );
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [characterNameToSearch]);
 
   async function loadCharacters(page: number, name: string) {
