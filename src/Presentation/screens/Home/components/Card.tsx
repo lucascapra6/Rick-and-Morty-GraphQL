@@ -72,6 +72,7 @@ function Card({character}: CardProps) {
       dispatch(charactersActions.setLoading(false));
     }
   }, []);
+
   return (
     <CardContainer style={[frontAnimatedStyle]}>
       <TouchableOpacity

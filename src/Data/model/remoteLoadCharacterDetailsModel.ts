@@ -1,5 +1,5 @@
 import {CharacterDetailsModel} from '../../Domain/models/characterDetailsModel';
 
-export type RemoteCharacterDetails = {
+export type RemoteCharacterDetailsModel = {
   character: CharacterDetailsModel;
 };

@@ -3,7 +3,6 @@ import {useSelector} from 'react-redux';
 import {CharactersRootState} from '../../store/slices/characters.slice';
 import {ScreenStyled} from '../../components/Screen.styled';
 import {FlexCentralizedContainer} from '../../components/FlexCentralizedContainer.styled';
-import {BoxStyled} from '../../components/Box.styled';
 import {ImageStyled} from '../../components/Image.styled';
 import {TextStyled} from '../../components/Text.styled';
 import {RowContainer} from '../../components/RowContainer.styled';

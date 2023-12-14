@@ -1,8 +1,8 @@
-import {CharacterBaseInfoModel} from '../models/characterBaseInfoModel';
+import {RemoteLoadAllCharactersModel} from '../../Data/model/remoteLoadAllCharactersModel';
 
 export interface LoadCharacters {
   loadAll: (
     page: number,
     name: string,
-  ) => Promise<{data: CharacterBaseInfoModel}>;
+  ) => Promise<{data: RemoteLoadAllCharactersModel}>;
 }

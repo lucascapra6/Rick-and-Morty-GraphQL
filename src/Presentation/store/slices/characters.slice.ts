@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {CharacterBaseInfoModel} from '../../../Domain/models/characterBaseInfoModel';
-import {CharacterDetailsModel} from '../../../Domain/models/characterDetailsModel';
+import {RemoteCharacterDetailsModel} from '../../../Data/model/remoteLoadCharacterDetailsModel';
+import {RemoteLoadAllCharactersModel} from '../../../Data/model/remoteLoadAllCharactersModel';
 
 type CharactersInitialState = {
-  characters: CharacterBaseInfoModel[];
-  characterDetails: CharacterDetailsModel;
+  characters: RemoteLoadAllCharactersModel[];
+  characterDetails: RemoteCharacterDetailsModel;
   loading: boolean;
   error: boolean;
 };
