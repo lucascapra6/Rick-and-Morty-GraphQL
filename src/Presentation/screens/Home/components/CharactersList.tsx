@@ -33,6 +33,7 @@ export function CharactersList({
       numColumns={2}
       onEndReached={({distanceFromEnd}) => {
         if (!onEndReachedCalledDuringMomentum && distanceFromEnd > 0) {
+          console.log('fetch');
           handlePagination();
           setOnEndReachedCalledDuringMomentum(true);
         }

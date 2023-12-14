@@ -57,7 +57,6 @@ function Card({character}: CardProps) {
   };
 
   const {onCardPress} = useDetails(useMakeRemoteLoadCharacterDetails());
-
   return (
     <CardContainer style={[frontAnimatedStyle]}>
       <TouchableOpacity
