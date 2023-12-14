@@ -10,6 +10,6 @@ type TextProps = {
 };
 export const TextStyled = styled.Text<TextProps>`
   color: ${props => props.color || Colors.text};
-  font-size: ${props => props.size || Sizes.small};
+  font-size: ${props => props.size || Sizes.small}px;
   font-weight: ${props => props.weight || Weights.bold};
 `;
