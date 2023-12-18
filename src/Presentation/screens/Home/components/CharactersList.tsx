@@ -1,10 +1,16 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useLayoutEffect, useRef, useState} from 'react';
 import Card from './Card';
-import {FlatList} from 'react-native';
+import {
+  FlatList,
+  NativeScrollEvent,
+  NativeScrollPoint,
+  NativeSyntheticEvent,
+} from 'react-native';
 import {LoadingStyled} from '../../../components/Loading.styled';
 import {Colors} from '../../../assets/colors/colors';
 import {EmptyList} from './EmptyList';
 import {CharacterBaseInfoModel} from '../../../../Domain/models/characterBaseInfoModel';
+import {useNavigation} from '@react-navigation/native';
 
 type CharactersList = {
   data: CharacterBaseInfoModel[];

@@ -22,8 +22,8 @@ export function Home() {
     characterNameToSearch,
     setCharacterNameToSearch,
   } = useCharactersList(useMakeRemoteLoadCharacters());
-
-  if (loading) return <LoadingStyled size={'large'} />;
+  
+  if (loading) return <LoadingStyled />;
   if (error) return <Text>Erro</Text>;
 
   return (
