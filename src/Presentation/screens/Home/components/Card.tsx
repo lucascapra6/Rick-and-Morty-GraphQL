@@ -12,12 +12,6 @@ import {TextStyled} from '../../../components/Text.styled';
 import {Sizes} from '../../../assets/sizes/sizes';
 import {Weights} from '../../../assets/weights/weights';
 import {ImageStyled} from '../../../components/Image.styled';
-import {useDispatch} from 'react-redux';
-import {useApolloClient} from '@apollo/client';
-import {GraphQLClient} from '../../../../Data/protocols/GraphQL/graphQLClient';
-import {RemoteLoadCharacterDetails} from '../../../../Data/usecases/remoteLoadCharacterDetails';
-import {charactersActions} from '../../../store/slices/characters.slice';
-import {useNavigation} from '../../../hooks/useNavigation';
 import {useDetails} from '../../../hooks/Details/useDetails';
 import {useMakeRemoteLoadCharacterDetails} from '../../../../Main/Factories/makeRemoteLoadCharacterDetail';
 
