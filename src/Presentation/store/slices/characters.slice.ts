@@ -1,9 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {RemoteCharacterDetailsModel} from '../../../Data/model/remoteLoadCharacterDetailsModel';
-import {RemoteLoadAllCharactersModel} from '../../../Data/model/remoteLoadAllCharactersModel';
+import {CharacterBaseInfoModel} from '../../../Domain/models/characterBaseInfoModel';
 
 type CharactersInitialState = {
-  characters: RemoteLoadAllCharactersModel[];
+  characters: CharacterBaseInfoModel[];
   characterDetails: RemoteCharacterDetailsModel;
   loading: boolean;
   error: boolean;
