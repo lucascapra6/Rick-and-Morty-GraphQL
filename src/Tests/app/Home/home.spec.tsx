@@ -1,6 +1,6 @@
 import {render} from '../../test-utils';
 
-import {act, waitFor} from '@testing-library/react-native';
+import {act, fireEvent, waitFor} from '@testing-library/react-native';
 import {Home} from '../../../Presentation/screens/Home';
 import * as useCharactersListModule from '../../../Presentation/hooks/Home/useCharactersList';
 import {CharacterBaseInfoModel} from '../../../Domain/models/characterBaseInfoModel';
@@ -29,6 +29,9 @@ describe('Home', () => {
     setCharacterNameToSearch: jest.fn(),
     page: 0,
   };
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
   it('should render error screen when theres an error', async function () {
     const spy = jest.spyOn(useCharactersListModule, 'useCharactersList');
     spy.mockReturnValue({
@@ -85,6 +88,26 @@ describe('Home', () => {
     await waitFor(async () => {
       const charactersList = await findByTestId('characters-list');
       expect(charactersList).toBeDefined();
+    });
+  });
+  it('should render input', async function () {
+    const spy = jest.spyOn(useCharactersListModule, 'useCharactersList');
+    const character: CharacterBaseInfoModel = {
+      id: '1',
+      name: 'Rick',
+      image: 'image',
+      gender: 'Male',
+      species: 'Human',
+    };
+    spy.mockReturnValue({
+      ...mockedData,
+      characterNameToSearch: 'lucas',
+      characters: [character],
+    });
+    const home = render(<Home />);
+    const textInput = await home.findByTestId('character-search-input');
+    await waitFor(() => {
+      expect(textInput.props.value).toBe('lucas');
     });
   });
 });

@@ -30,10 +30,10 @@ export function Home() {
     <ScreenStyled>
       <Title testId="home-title">Rick and Morty</Title>
       <TextInputStyled
+        testID={'character-search-input'}
         placeholder={'Wich character would you like to see?'}
         value={characterNameToSearch}
-        onChange={(event: NativeSyntheticEvent<TextInputChangeEventData>) => {
-          const {text} = event.nativeEvent;
+        onChangeText={(text: string) => {
           setCharacterNameToSearch(text);
         }}
       />

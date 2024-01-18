@@ -7,7 +7,7 @@ import {
   remoteLoadAllCharactersWithoutNextPageMock,
 } from '../mocks/remoteLoadAllCharactersMock';
 
-class LoadCharactersSpy implements LoadCharacters {
+export class LoadCharactersSpy implements LoadCharacters {
   loadAll() {
     return Promise.resolve({data: remoteLoadAllCharactersMock});
   }
