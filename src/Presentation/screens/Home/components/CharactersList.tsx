@@ -31,6 +31,7 @@ export function CharactersList({
 
   return (
     <FlatList
+      testID={'characters-list'}
       data={data}
       renderItem={({item}) => <Card character={item} />}
       showsVerticalScrollIndicator={false}

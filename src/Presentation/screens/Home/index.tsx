@@ -22,13 +22,13 @@ export function Home() {
     characterNameToSearch,
     setCharacterNameToSearch,
   } = useCharactersList(useMakeRemoteLoadCharacters());
-  
+
   if (loading) return <LoadingStyled />;
   if (error) return <Text>Erro</Text>;
 
   return (
     <ScreenStyled>
-      <Title>Rick and Morty</Title>
+      <Title testId="home-title">Rick and Morty</Title>
       <TextInputStyled
         placeholder={'Wich character would you like to see?'}
         value={characterNameToSearch}

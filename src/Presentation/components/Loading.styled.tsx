@@ -14,7 +14,7 @@ export function LoadingStyled({
 }: LoadingProps) {
   return (
     <FlexCentralizedContainer>
-      <ActivityIndicatorStyled size={size} color={color} />
+      <ActivityIndicatorStyled size={size} color={color} testID={'loading'} />
     </FlexCentralizedContainer>
   );
 }

@@ -6,11 +6,15 @@ import {CentralizedContainer} from '../../../components/CentralizedContainer.sty
 
 type TitleProps = {
   children: string;
+  testId: string;
 };
-export default function Title({children}: TitleProps) {
+export default function Title({children, testId}: TitleProps) {
   return (
     <CentralizedContainer>
-      <TextStyled size={Sizes.extraLarge} color={Colors.primary}>
+      <TextStyled
+        testID={testId}
+        size={Sizes.extraLarge}
+        color={Colors.primary}>
         {children}
       </TextStyled>
     </CentralizedContainer>

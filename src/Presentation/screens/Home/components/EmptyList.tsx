@@ -12,7 +12,7 @@ type EmptyListProps = {
 };
 export function EmptyList({title, message}: EmptyListProps) {
   return (
-    <FlexCentralizedContainer style={{height: 200}}>
+    <FlexCentralizedContainer style={{height: 200}} testID={'empty-list'}>
       <TextStyled
         color={Colors.primary}
         size={Sizes.large}

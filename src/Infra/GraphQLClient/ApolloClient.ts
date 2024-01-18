@@ -9,7 +9,7 @@ import {
   GraphqlResponse,
 } from '../../Data/protocols/GraphQL/graphQLClient';
 
-type Apollo = ApolloClient<NormalizedCacheObject>;
+export type Apollo = ApolloClient<NormalizedCacheObject>;
 
 const BASE_URL = 'https://rickandmortyapi.com/graphql';
 
